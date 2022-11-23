@@ -8,10 +8,9 @@ import {
   selectIssues,
   selectIssuesLoadingStatus,
   DeleteIssue,
-  RemoveTagFromIssue,
-  AddTag,
   selectAllTags,
   UpdateSelectedTag,
+  UpdatEditModeById,
 } from '@store/issues';
 import { Observable } from 'rxjs';
 
@@ -39,14 +38,12 @@ export class IssueContainerComponent {
     this.store.dispatch(UpdateIssue({ issue: $event }));
   }
 
-  onDeleteIssue($event: string) {
-    this.store.dispatch(DeleteIssue({ issueId: $event }));
+  onUpdateEditMode(issueId: string) {
+    this.store.dispatch(UpdatEditModeById({ issueId: issueId }));
   }
 
-  onRemoveTag($event: { id: string; tag: string }) {
-    this.store.dispatch(
-      RemoveTagFromIssue({ issueId: $event.id, tag: $event.tag })
-    );
+  onDeleteIssue($event: string) {
+    this.store.dispatch(DeleteIssue({ issueId: $event }));
   }
 
   selectFilterTag(tag: string) {
@@ -55,9 +52,5 @@ export class IssueContainerComponent {
 
   clearFilterTag() {
     this.store.dispatch(UpdateSelectedTag({ tag: '' }));
-  }
-
-  onAddTag($event: { id: string; tag: string }) {
-    this.store.dispatch(AddTag({ issueId: $event.id, tag: $event.tag }));
   }
 }

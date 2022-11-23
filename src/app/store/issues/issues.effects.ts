@@ -2,7 +2,6 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Issue } from '@models/issue';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { createAction } from '@ngrx/store';
 import { IssuesService } from '@services/issues.service';
 import { catchError, map, mergeMap, of, switchMap } from 'rxjs';
 

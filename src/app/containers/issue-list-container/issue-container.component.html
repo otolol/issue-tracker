@@ -10,16 +10,15 @@
         (selectFilterTag)="selectFilterTag($event)"
         (resetFilter)="clearFilterTag()"
       ></issue-filter>
-    </ng-container>
 
-    <ng-container *ngFor="let issue of issues">
-      <issue-item
-        [issue]="issue"
-        (addTag)="onAddTag($event)"
-        (removeTag)="onRemoveTag($event)"
-        (deleteIssue)="onDeleteIssue($event)"
-        (changeIssue)="onChangeIssue($event)"
-      ></issue-item>
+      <ng-container *ngFor="let issue of issues">
+        <issue-item
+          [issue]="issue"
+          (deleteIssue)="onDeleteIssue($event)"
+          (changeIssue)="onChangeIssue($event)"
+          (updateEditMode)="onUpdateEditMode($event)"
+        ></issue-item>
+      </ng-container>
     </ng-container>
   </div>
 </ng-container>

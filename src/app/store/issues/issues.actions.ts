@@ -41,16 +41,6 @@ export const SetAllTags = createAction(
     props<{tags: Array<string>}>()
 )
 
-export const RemoveTagFromIssue = createAction(
-    '[Issues] Remove Tag from issue',
-    props<{issueId: string, tag: string}>()
-)
-
-export const AddTag = createAction(
-    '[Issues] Add Tag',
-    props<{issueId: string, tag: string}>()
-)
-
 export const UpdateSelectedTag = createAction(
     '[Issues] Update selected tag',
     props<{tag: string}>()
@@ -69,4 +59,10 @@ export const AddIssueSuccess = createAction(
 export const AddIssueFailure = createAction(
     '[Issues] Add Issue Failure',
     props<{err: HttpErrorResponse}>()
+)
+
+
+export const UpdatEditModeById = createAction(
+    '[Issues] Update Edit Mode by id',
+    props<{issueId: string}>()
 )

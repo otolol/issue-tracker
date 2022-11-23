@@ -16,33 +16,39 @@ import { Issue } from '@models/issue';
 })
 export class IssueFormComponent {
   @Input() issue: Issue = {} as Issue;
-  issueForm: FormGroup = new FormGroup({});
+  
   @Output() changeIssue: EventEmitter<Issue> = new EventEmitter<Issue>();
   @Output() cancelChanges = new EventEmitter();
-  @Output() removeTag = new EventEmitter<string>();
-  @Output() addTag = new EventEmitter<string>();
 
+  issueForm: FormGroup = new FormGroup({});
+
+  
+  tags: Array<string> = [];
   ngOnInit() {
     this.issueForm = new FormGroup({
       title: new FormControl(this.issue.title, [Validators.required]),
       text: new FormControl(this.issue.text, [Validators.required]),
     });
+    this.tags = this.issue.tags;
   }
 
   onRemoveTag($event: string) {
-    this.removeTag.emit($event);
+    this.tags = this.tags.filter((tag: string) => tag != $event);
   }
 
   onAddTag($event: string) {
-    this.addTag.emit($event);
+    this.tags = [...this.tags, $event];
   }
 
   onSaveChanges() {
     const issue = {
       ...this.issue,
+      tags: this.tags,
       title: this.issueForm.value.title,
       text: this.issueForm.value.text,
     };
+    this.issueForm.reset();
+    this.tags = [];
     this.changeIssue.emit(issue);
   }
 

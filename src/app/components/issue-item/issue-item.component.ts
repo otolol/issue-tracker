@@ -9,20 +9,13 @@ import { Issue } from '@models/issue';
 })
 export class IssueItemComponent {
 
-  editMode: boolean = false;
-
   @Input() issue: Issue = {} as Issue;
   @Output() changeIssue: EventEmitter<Issue> = new EventEmitter<any>();
   @Output() deleteIssue: EventEmitter<string> = new EventEmitter<string>();
-  @Output() addTag: EventEmitter<{ id: string; tag: string }> = new EventEmitter<{ id: string; tag: string }>();
-  @Output() removeTag: EventEmitter<{ id: string; tag: string }> = new EventEmitter<{ id: string; tag: string }>();
+  @Output() updateEditMode: EventEmitter<string> = new EventEmitter<string>();
 
-  startEditMode() {
-    this.editMode = true;
-  }
-
-  removeEditMode() {
-    this.editMode = false;
+  toggleEditMode() {
+    this.updateEditMode.emit(this.issue.id);
   }
 
   onChangeIssue($event: Issue) {
@@ -31,13 +24,5 @@ export class IssueItemComponent {
 
   onDeleteIssue(issueId: string) {
       this.deleteIssue.emit(issueId);
-  }
-
-  onAddTag(event: { id: string; tag: string }) {
-    this.addTag.emit(event);
-  }
-
-  onRemoveTag(event: { id: string; tag: string }) {
-      this.removeTag.emit(event);
   }
 }

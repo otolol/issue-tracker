@@ -13,7 +13,6 @@ export interface IssuesState {
   error?: HttpErrorResponse;
 }
 
-
 export const issuesInitState: IssuesState = {
   loadingStatus: LoadingStatus.NOT_LOADED,
   issues: new Array<Issue>(),
@@ -36,7 +35,6 @@ const _issuesReducer = createReducer(
     };
   }),
   on(issuesActions.FetchIssuesSuccess, (state: IssuesState, action) => {
-
     return {
       ...state,
       issues: action.issues,
@@ -69,10 +67,22 @@ const _issuesReducer = createReducer(
     );
     let issues = [...state.issues];
     if (index !== -1) {
-      issues[index] = action.issue;
+      issues[index] = {
+        ...action.issue,
+        editMode: false,
+      };
     }
+
+    let tags = [...state.tags];
+    action.issue.tags.forEach((tag: string) => {
+      const index = tags.findIndex((_tag) => _tag == tag);
+      if(index == -1) {
+        tags = [...tags, tag.toLowerCase()];
+      }
+    })
     return {
       ...state,
+      tags: tags,
       issues: issues,
     };
   }),
@@ -89,37 +99,27 @@ const _issuesReducer = createReducer(
       issues: issues,
     };
   }),
-  on(issuesActions.RemoveTagFromIssue, (state: IssuesState, action) => {
-    let issues = state.issues.map((issue) => {
-      if (issue.id == action.issueId) {
-        let tags = issue.tags.filter((tag) => tag !== action.tag);
+  on(issuesActions.UpdatEditModeById, (state: IssuesState, action) => {
+    const issues = state.issues.map((issue: Issue) => {
+      if (issue.id === action.issueId) {
+        let diff: Array<string> = [];
+        state.tags.forEach((tag: string) => {
+          const index = issue.tags.findIndex((_tag: string) => tag == _tag);
+          if(index === -1) {
+            diff.push(tag);
+          }
+        });
         issue = {
           ...issue,
-          tags: tags,
+          editMode: !issue.editMode,
         };
       }
       return issue;
     });
+
     return {
       ...state,
       issues: issues,
-    };
-  }),
-  on(issuesActions.AddTag, (state: IssuesState, action) => {
-    let issues = state.issues.map((issue) => {
-      if (issue.id == action.issueId) {
-        issue = {
-          ...issue,
-          tags: [...issue.tags, action.tag],
-        };
-      }
-      return issue;
-    });
-    const tagIndex = state.tags.findIndex((tag: string) => tag == action.tag);
-    return {
-      ...state,
-      issues: issues,
-      tags: tagIndex === -1 ? [...state.tags, action.tag] : state.tags,
     };
   })
 );

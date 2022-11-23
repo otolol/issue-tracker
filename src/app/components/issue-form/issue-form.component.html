@@ -6,9 +6,8 @@
     <input class="text-input" id="text" formControlName="text" type="text" />
   </div>
 </form>
-
 <tags
-  [tags]="issue.tags"
+  [tags]="tags"
   [editable]="true"
   (removeTag)="onRemoveTag($event)"
   (addTag)="onAddTag($event)"

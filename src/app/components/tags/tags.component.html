@@ -1,12 +1,12 @@
 <ng-container *ngIf="!editable">
   <div *ngFor="let tag of tags" class="tag">{{ tag }}</div>
 </ng-container>
-
 <ng-container *ngIf="editable">
   <div *ngFor="let tag of tags" class="tag">
     {{ tag }}
     <span (click)="onRemoveTag(tag)" class="tag-remove">x</span>
   </div>
+
   <input [(ngModel)]="newTag" />
-  <button (click)="onAddTag(newTag)">add New Tag</button>
+  <button (click)="onAddTag(newTag)">add Tag</button>
 </ng-container>
