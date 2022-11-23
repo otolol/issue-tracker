@@ -33,7 +33,7 @@ describe('Issue Item Component', () => {
   it('it should render issue-form if editMode is true', () => {
     const fixture = TestBed.createComponent(IssueItemComponent);
     const issueItemComp = fixture.componentInstance;
-    issueItemComp.editMode = true;
+    issueItemComp.issue.editMode = true;
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLEmbedElement;
     expect(compiled.querySelector('issue-form')).toBeTruthy();

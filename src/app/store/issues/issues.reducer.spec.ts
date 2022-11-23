@@ -32,7 +32,6 @@ describe('Issues Reducer', () => {
             title: 'test',
             text: 'text',
             tags: ['1', '2'],
-            suggestedTags: []
           }];
         const state = reducer(initState, issueActions.FetchIssuesSuccess({issues: issues}))
         expect(state).toEqual({
