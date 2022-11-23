@@ -1,0 +1,5 @@
+<select (change)="onChange($event.target)">
+  <option *ngFor="let tag of tags" [value]="tag">{{ tag }}</option>
+</select>
+
+<button (click)="onReset()">Reset Tag Filters</button>

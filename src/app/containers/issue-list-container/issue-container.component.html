@@ -1,0 +1,25 @@
+<ng-container *ngIf="issues$ | async as issues">
+  <div *ngIf="(loadingStatus$ | async) == LOADING_STATUS.LOADING">
+    loading..
+  </div>
+
+  <div *ngIf="(loadingStatus$ | async) == LOADING_STATUS.LOADED">
+    <ng-container *ngIf="tags$ | async as tags">
+      <issue-filter
+        [tags]="tags"
+        (selectFilterTag)="selectFilterTag($event)"
+        (resetFilter)="clearFilterTag()"
+      ></issue-filter>
+    </ng-container>
+
+    <ng-container *ngFor="let issue of issues">
+      <issue-item
+        [issue]="issue"
+        (addTag)="onAddTag($event)"
+        (removeTag)="onRemoveTag($event)"
+        (deleteIssue)="onDeleteIssue($event)"
+        (changeIssue)="onChangeIssue($event)"
+      ></issue-item>
+    </ng-container>
+  </div>
+</ng-container>

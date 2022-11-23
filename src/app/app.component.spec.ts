@@ -1,16 +1,24 @@
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { AddIssueContainerModule } from '@containers/add-issue-container/add-issue-container.module';
+import { IssueContainerModule } from '@containers/issue-list-container/issue-container.module';
+import { EffectsModule } from '@ngrx/effects';
+import { ActionReducerMap, StoreModule } from '@ngrx/store';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
+  const reducers: ActionReducerMap<any> = {};
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        IssueContainerModule,
+        AddIssueContainerModule,
+        StoreModule.forRoot(reducers),
+        EffectsModule.forRoot([]),
       ],
-      declarations: [
-        AppComponent
-      ],
+      declarations: [AppComponent],
     }).compileComponents();
   });
 
@@ -26,10 +34,10 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('tracker');
   });
 
-  it('should render title', () => {
+  it('should render issue-container', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('tracker app is running!');
+    expect(compiled.querySelector('issue-container')).toBeTruthy();
   });
 });

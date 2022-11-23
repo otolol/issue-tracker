@@ -1,0 +1,25 @@
+.issue-text {
+    background-color: #f6f8fa;
+    padding: 15px;
+    border-radius: 6px;
+}
+
+input {
+    border-radius: 5px;
+    height: 25px;
+    border: 1px solid gainsboro;
+}
+
+.title-input {
+    width: 250px;
+}
+
+.text-input {
+    width: 750px;
+}
+
+issue-actions {
+    & button {
+        margin-left: 10px;
+    }
+}

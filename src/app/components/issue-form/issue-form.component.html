@@ -1,0 +1,25 @@
+<form [formGroup]="issueForm">
+  <h3>
+    <input class="title-input" id="title" formControlName="title" type="text" />
+  </h3>
+  <div class="issue-text">
+    <input class="text-input" id="text" formControlName="text" type="text" />
+  </div>
+</form>
+
+<tags
+  [tags]="issue.tags"
+  [editable]="true"
+  (removeTag)="onRemoveTag($event)"
+  (addTag)="onAddTag($event)"
+></tags>
+
+<issue-actions>
+  <span (click)="onSaveChanges()">
+    <ng-content select="[submit]"></ng-content>
+  </span>
+
+  <span (click)="onCancelChanges()">
+    <ng-content select="[cancel]"></ng-content>
+  </span>
+</issue-actions>

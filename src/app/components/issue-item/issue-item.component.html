@@ -1,0 +1,17 @@
+<issue-layout>
+  <issue-view *ngIf="!editMode" [issue]="issue">
+    <button (click)="startEditMode()">Edit</button>
+    <button (click)="onDeleteIssue(issue.id)">Delete</button>
+  </issue-view>
+  <issue-form
+    *ngIf="editMode"
+    [issue]="issue"
+    (addTag)="onAddTag({ id: issue.id, tag: $event })"
+    (removeTag)="onRemoveTag({ id: issue.id, tag: $event })"
+    (changeIssue)="onChangeIssue($event)"
+    (cancelChanges)="removeEditMode()"
+  >
+    <button submit>Save</button>
+    <button cancel>Cancel</button>
+  </issue-form>
+</issue-layout>

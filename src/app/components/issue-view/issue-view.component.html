@@ -1,0 +1,9 @@
+<h3 class="issue-header">{{ issue.title }}</h3>
+<p class="issue-text" [innerHtml]="issue.text | calculate | safe"></p>
+<div>
+  <tags [tags]="issue.tags"></tags>
+</div>
+
+<issue-actions>
+  <ng-content></ng-content>
+</issue-actions>
