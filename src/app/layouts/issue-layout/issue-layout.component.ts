@@ -1,11 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  EventEmitter,
-  Input,
-  Output,
 } from '@angular/core';
-import { Issue } from '@models/issue';
 
 @Component({
   selector: 'issue-layout',

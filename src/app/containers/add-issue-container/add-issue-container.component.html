@@ -1,7 +1,7 @@
 <ng-container *ngIf="placeHolder$ | async as placeHolder">
   <issue-layout>
     <issue-form [issue]="placeHolder" (changeIssue)="onComment($event)">
-      <button submit>Comment</button>
+      <t-button primary submit>Comment</t-button>
     </issue-form>
   </issue-layout>
 </ng-container>

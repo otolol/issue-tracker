@@ -1,7 +1,8 @@
 <issue-layout>
   <issue-view *ngIf="!issue.editMode" [issue]="issue">
-    <button (click)="toggleEditMode()">Edit</button>
-    <button (click)="onDeleteIssue(issue.id)">Delete</button>
+    
+    <t-button primary (click)="toggleEditMode()">Edit</t-button>
+    <t-button warn (click)="onDeleteIssue(issue.id)">Delete</t-button>
   </issue-view>
   <issue-form
     *ngIf="issue.editMode"
@@ -9,7 +10,7 @@
     (changeIssue)="onChangeIssue($event)"
     (cancelChanges)="toggleEditMode()"
   >
-    <button submit>Save</button>
-    <button cancel>Cancel</button>
+    <t-button primary submit>Save</t-button>
+    <t-button warn cancel>Cancel</t-button>
   </issue-form>
 </issue-layout>

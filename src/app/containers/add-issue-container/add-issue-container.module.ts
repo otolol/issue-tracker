@@ -5,6 +5,7 @@ import { IssueViewModule } from '@components/issue-view/issue-view.module';
 import { IssueFormModule } from '@components/issue-form/issue-form.module';
 import { IssueLayoutModule } from 'src/app/layouts/issue-layout';
 import { IssueActionsModule } from 'src/app/layouts/issue-actions/issue-actions.module';
+import { ButtonModule } from '@components/button/button.module';
 
 @NgModule({
   imports: [
@@ -13,6 +14,7 @@ import { IssueActionsModule } from 'src/app/layouts/issue-actions/issue-actions.
     IssueLayoutModule,
     IssueFormModule,
     IssueActionsModule,
+    ButtonModule
   ],
   declarations: [AddIssueContainerComponent],
   exports: [AddIssueContainerComponent],

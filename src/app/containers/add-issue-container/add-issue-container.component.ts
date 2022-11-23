@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Issue } from '@models/issue';
 import { Store } from '@ngrx/store';
-import { AddIssue, selectAllTags, selectPlaceholderIssue } from '@store/issues';
+import { AddIssue, selectPlaceholderIssue } from '@store/issues';
 import { Observable } from 'rxjs';
 
 @Component({

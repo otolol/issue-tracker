@@ -3,7 +3,10 @@
   background-color: #dafbe1;
   border-radius: 5px;
   padding: 5px;
-  margin-left: 10px;
+
+  &:not(:first-child) {
+    margin-left: 10px;
+  }
 }
 
 .tag-remove {

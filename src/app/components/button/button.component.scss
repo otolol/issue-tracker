@@ -1,0 +1,43 @@
+.t-button {
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 5px 20px;
+  border-radius: 4px;
+  transition: all 0.2s;
+  position: relative;
+  font-size: 13px;
+  cursor: pointer;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 16px rgba($color: #000, $alpha: 0.2);
+
+    &:afrer {
+      transform: scaleX(1.4) scaleY(1.6);
+    }
+  }
+
+  &:active,
+  &:focus {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 16px rgba($color: #000, $alpha: 0.2);
+  }
+}
+
+.t-button--warn {
+  background-color: #f44336;
+  color: #fff;
+
+  &::after {
+    background-color: #f44336;
+  }
+}
+
+.t-button--primary {
+  background-color: #55c57a;
+  color: #fff;
+
+  &::after {
+    background-color: #55c57a;
+  }
+}
